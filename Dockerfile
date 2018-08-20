@@ -6,7 +6,8 @@ RUN apk update && apk add bash \
   ca-certificates \
   git \
   openssl \
-  wget
+  wget \
+  docker
 
 VOLUME /etc/gitlab-runner /home/gitlab-runner
 
