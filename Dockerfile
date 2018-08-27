@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM ubuntu:latest
 MAINTAINER Nathaniel (nathaniel.davidson@gmail.com)
 
 # Install curl
