@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Nathaniel (nathaniel.davidson@gmail.com)
 
 # Install curl
-RUN apk update && apk add bash \
+RUN apt update && apt install bash \
   ca-certificates \
   git \
   openssl \
@@ -11,7 +11,7 @@ RUN apk update && apk add bash \
 
 VOLUME /etc/gitlab-runner /home/gitlab-runner
 
-RUN adduser -h /home/gitlab-runner -s /bin/bash -D gitlab-runner
+RUN useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
 RUN wget -q -O /usr/local/bin/gitlab-ci-multi-runner \
   https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-linux-amd64 && \
   chmod +x /usr/local/bin/gitlab-ci-multi-runner
