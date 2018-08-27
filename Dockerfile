@@ -2,7 +2,7 @@ FROM ubuntu:latest
 MAINTAINER Nathaniel (nathaniel.davidson@gmail.com)
 
 # Install curl
-RUN apt update && apt install bash \
+RUN apt update && apt install -y bash \
   ca-certificates \
   git \
   openssl \
