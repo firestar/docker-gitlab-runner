@@ -18,5 +18,6 @@ RUN wget -q -O /usr/local/bin/gitlab-ci-multi-runner \
 
 # Add the entrypoint
 COPY assets/entrypoint.sh /entrypoint.sh
+COPY resolv.conf /etc/resolv.conf
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["run", "--working-directory=/home/gitlab-runner", "--user=root"]
