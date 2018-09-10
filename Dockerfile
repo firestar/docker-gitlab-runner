@@ -1,8 +1,8 @@
-FROM ubuntu:latest
+FROM alpine:latest
 MAINTAINER Nathaniel (nathaniel.davidson@gmail.com)
 
 # Install curl
-RUN apt update && apt install -y bash \
+RUN apk update && apk add bash \
   ca-certificates \
   git \
   openssl \
@@ -11,13 +11,12 @@ RUN apt update && apt install -y bash \
 
 VOLUME /etc/gitlab-runner /home/gitlab-runner
 
-RUN useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bash
+RUN adduser -h /home/gitlab-runner -s /bin/bash -D gitlab-runner
 RUN wget -q -O /usr/local/bin/gitlab-ci-multi-runner \
   https://gitlab-ci-multi-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-ci-multi-runner-linux-amd64 && \
   chmod +x /usr/local/bin/gitlab-ci-multi-runner
 
 # Add the entrypoint
 COPY assets/entrypoint.sh /entrypoint.sh
-COPY resolv.conf /etc/resolv.conf
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["run", "--working-directory=/home/gitlab-runner", "--user=root"]
