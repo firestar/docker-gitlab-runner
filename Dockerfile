@@ -11,7 +11,7 @@ RUN apk update && apk add bash \
 
 VOLUME /etc/gitlab-runner /home/gitlab-runner
 
-ADD https://storage.googleapis.com/kubernetes-release/release/v1.8.2/bin/linux/amd64/kubectl /usr/local/bin/kubectl
+ADD https://storage.googleapis.com/kubernetes-release/release/v1.11.1/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 RUN set -x && \
     apk add --no-cache curl ca-certificates && \
     chmod +x /usr/local/bin/kubectl && \
